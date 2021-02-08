@@ -68,7 +68,7 @@ class ZetaSploitModule:
 
     def run(self):
         target_url = self.parser.parse_options(self.options)
-        target_url = self.helper.remove_scheme(target_url)
+        target_url = self.helper.strip_scheme(target_url)
         
         paths = self.dictionary.paths
         try:

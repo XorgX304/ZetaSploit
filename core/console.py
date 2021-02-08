@@ -96,10 +96,8 @@ class console:
 
             except KeyboardInterrupt:
                 self.badges.output_empty("")
-            except self.exceptions.GlobalException:
+            except (EOFError, self.exceptions.GlobalException):
                 pass
-            except EOFError:
-                self.badges.output_warning("Use 'exit -f' to force quit instead.")
             except Exception as e:
                 self.badges.output_error("An error occurred: " + str(e) + "!")
     

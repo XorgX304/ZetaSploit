@@ -59,7 +59,7 @@ class execute:
                 args = self.formatter.format_arguments(arguments)
                 try:
                     command.run(len(args), args)
-                except (KeyboardInterrupt, EOFError):
+                except KeyboardInterrupt:
                     self.badges.output_empty("")
             return True
         return False
@@ -91,5 +91,5 @@ class execute:
             args = self.formatter.format_arguments(arguments)
             try:
                 command['Run'](len(args), args)
-            except (KeyboardInterrupt, EOFError):
+            except KeyboardInterrupt:
                 self.badges.output_empty("")

@@ -79,4 +79,4 @@ class ZetaSploitModule:
             self.formatter.format_table("Network Devices", headers, *net_data)
             self.badges.output_empty("")
         except Exception:
-            self.badges.output_error("Failed to scan local network!)
+            self.badges.output_error("Failed to scan local network!")

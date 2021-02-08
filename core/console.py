@@ -94,10 +94,12 @@ class console:
                 if self.local_storage.get("history"):
                     readline.write_history_file(self.history)
 
-            except (KeyboardInterrupt, EOFError):
+            except KeyboardInterrupt:
                 self.badges.output_empty("")
             except self.exceptions.GlobalException:
                 pass
+            except EOFError:
+                self.badges.output_warning("Use 'exit -f' to force quit instead.")
             except Exception as e:
                 self.badges.output_error("An error occurred: " + str(e) + "!")
     

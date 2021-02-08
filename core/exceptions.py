@@ -27,6 +27,3 @@
 class exceptions:
     class GlobalException(Exception):
         pass
-
-    class LocalException(Exception):
-        pass

@@ -46,7 +46,7 @@ class ZetaSploitCommand:
             'MinArgs': 0
         }
 
-    def entry_to_module(self, argc, current_module):
+    def entry_to_module(self, argc, argv, current_module):
         if argc > 0:
             if argv[0] == "-j":
                 self.badges.output_process("Running module as a background job...")
@@ -73,14 +73,14 @@ class ZetaSploitCommand:
                     self.badges.output_error("Missed some required options!")
                 else:
                     try:
-                        self.entry_to_module(argc, current_module)
+                        self.entry_to_module(argc, argv, current_module)
                     except KeyboardInterrupt:
                         self.badges.output_empty("")
                     except Exception as e:
                         self.badges.output_error("An error occurred in module: " + str(e) + "!")
             else:
                 try:
-                    self.entry_to_module(argc, current_module)
+                    self.entry_to_module(argc, argv, current_module)
                 except KeyboardInterrupt:
                     self.badges.output_empty("")
                 except Exception as e:

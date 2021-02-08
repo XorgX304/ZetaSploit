@@ -74,12 +74,16 @@ class ZetaSploitCommand:
                 else:
                     try:
                         self.entry_to_module(argc, current_module)
-                    except (KeyboardInterrupt, EOFError):
+                    except KeyboardInterrupt:
                         self.badges.output_empty("")
+                    except Exception as e:
+                        self.badges.output_error("An error occurred in module: " + str(e) + "!")
             else:
                 try:
                     self.entry_to_module(argc, current_module)
-                except (KeyboardInterrupt, EOFError):
+                except KeyboardInterrupt:
                     self.badges.output_empty("")
+                except Exception as e:
+                    self.badges.output_error("An error occurred in module: " + str(e) + "!")
         else:
             self.badges.output_warning("No module selected.")

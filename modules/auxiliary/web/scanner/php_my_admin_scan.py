@@ -81,7 +81,5 @@ class ZetaSploitModule:
                     self.badges.output_success("[%s] ... [%s %s]" % (path, response.status, response.reason))
                 else:
                     self.badges.output_warning("[%s] ... [%s %s]" % (path, response.status, response.reason))
-        except (KeyboardInterrupt, EOFError):
-            self.badges.output_empty("")
         except Exception:
-            self.badges.output_error("Host is down!")
+            self.badges.output_error("Failed to scan, check URL and retry!")

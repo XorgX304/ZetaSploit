@@ -94,9 +94,7 @@ class console:
                 if self.local_storage.get("history"):
                     readline.write_history_file(self.history)
 
-            except KeyboardInterrupt:
-                self.badges.output_empty("")
-            except (EOFError, self.exceptions.GlobalException):
+            except (KeyboardInterrupt, EOFError, self.exceptions.GlobalException):
                 pass
             except Exception as e:
                 self.badges.output_error("An error occurred: " + str(e) + "!")

@@ -63,17 +63,20 @@ class ZetaSploitModule:
         }
 
     def run(self):
-        self.badges.output_process("Scanning network...")
-        
         ip_range = self.parser.parse_options(self.options)
-        arp = scapy.all.ARP(pdst=ip_range)
-        ether = scapy.all.Ether(dst="ff:ff:ff:ff:ff:ff")
-        result = scapy.all.srp(ether/arp, timeout=10, verbose=False)[0]
+        self.badges.output_process("Scanning local network...")
         
-        net_data = list()
-        headers = ("Host", "MAC")
-        for _, received in result:
-            net_data.append((received.psrc, received.hwsrc))
-        self.badges.output_empty("")
-        self.formatter.format_table("Network Devices", headers, *net_data)
-        self.badges.output_empty("")
+        try:
+            arp = scapy.all.ARP(pdst=ip_range)
+            ether = scapy.all.Ether(dst="ff:ff:ff:ff:ff:ff")
+            result = scapy.all.srp(ether/arp, timeout=10, verbose=False)[0]
+        
+            net_data = list()
+            headers = ("Host", "MAC")
+            for _, received in result:
+                net_data.append((received.psrc, received.hwsrc))
+            self.badges.output_empty("")
+            self.formatter.format_table("Network Devices", headers, *net_data)
+            self.badges.output_empty("")
+        except Exception:
+            self.badges.output_error("Failed to scan local network!)

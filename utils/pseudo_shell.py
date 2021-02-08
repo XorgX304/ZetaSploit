@@ -26,11 +26,13 @@
 
 from core.badges import badges
 from core.jobs import jobs
+from core.exceptions import exceptions
 
 class pseudo_shell:
     def __init__(self):
         self.badges = badges()
         self.jobs = jobs()
+        self.exceptions = exceptions()
         
         self.prompt = 'pseudo % '
         
@@ -60,8 +62,7 @@ class pseudo_shell:
                 if command == 'exit':
                     break
                 execute_method(command)
-            except (EOFError, KeyboardInterrupt):
-                self.badges.output_empty("")
-                break
+            except (KeyboardInterrupt, EOFError, self.exceptions.GlobalException):
+                pass
             except Exception as e:
                 self.badges.output_error("An error occurred: " + str(e) + "!")

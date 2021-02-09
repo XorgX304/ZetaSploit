@@ -168,6 +168,21 @@
                 ],
                 "Risk": "high"
             },
+            "f5_big_ip_tmui/remote_code_execution": {
+                "Path": "modules/exploit/multi/f5_big_ip_tmui/remote_code_execution",
+                "Name": "exploit/multi/f5_big_ip_tmui/remote_code_execution",
+                "Authors": [
+                    "enty8080"
+                ],
+                "Description": "Remote Code Execution in F5 BIG-IP Traffic Management User Interface (TMUI).",
+                "Dependencies": [
+                    "requests"
+                ],
+                "Comments": [
+                    ""
+                ],
+                "Risk": "high"
+            },
             "nostromo_httpd/remote_code_execution": {
                 "Path": "modules/exploit/multi/nostromo_httpd/remote_code_execution",
                 "Name": "exploit/multi/nostromo_httpd/remote_code_execution",

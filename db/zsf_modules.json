@@ -153,13 +153,13 @@
                 ],
                 "Risk": "high"
             },
-            "f5_big_ip_tmui/cve_2020_5902": {
-                "Path": "modules/exploit/multi/f5_big_ip_tmui/cve_2020_5902",
-                "Name": "exploit/multi/f5_big_ip_tmui/cve_2020_5902",
+            "f5_big_ip_tmui/remote_file_read": {
+                "Path": "modules/exploit/multi/f5_big_ip_tmui/remote_file_read",
+                "Name": "exploit/multi/f5_big_ip_tmui/remote_file_read",
                 "Authors": [
                     "enty8080"
                 ],
-                "Description": "Remote Code Execution in F5 BIG-IP Traffic Management User Interface (TMUI).",
+                "Description": "Remote file read in F5 BIG-IP Traffic Management User Interface (TMUI).",
                 "Dependencies": [
                     "requests"
                 ],
@@ -168,9 +168,9 @@
                 ],
                 "Risk": "high"
             },
-            "nostromo_httpd/cve_2019_16278": {
-                "Path": "modules/exploit/multi/nostromo_httpd/cve_2019_16278",
-                "Name": "exploit/multi/nostromo_httpd/cve_2019_16278",
+            "nostromo_httpd/remote_code_execution": {
+                "Path": "modules/exploit/multi/nostromo_httpd/remote_code_execution",
+                "Name": "exploit/multi/nostromo_httpd/remote_code_execution",
                 "Authors": [
                     "enty8080"
                 ],

@@ -43,7 +43,7 @@ class pseudo_shell:
         self.badges.output_information("Commands are sent to the target via provided execute method.")
         self.badges.output_empty("")
         
-    def spawn_pseudo_shell(self, module_name, execute_method):
+    def spawn_pseudo_shell(self, module_name, execute_method, arguments=()):
         self.badges.output_process("Spawning Pseudo shell...")
         
         if self.jobs.check_module_job(module_name):
@@ -53,15 +53,15 @@ class pseudo_shell:
             self.badges.output_success("Congratulations, you won Pseudo shell!")
         
             self.pseudo_shell_header()
-            self.launch_pseudo_shell(execute_method)
+            self.launch_pseudo_shell(execute_method, arguments)
         
-    def launch_pseudo_shell(self, execute_method):
+    def launch_pseudo_shell(self, execute_method, arguments):
         while True:
             try:
                 command = self.badges.input_empty(self.prompt)
                 if command == 'exit':
                     break
-                execute_method(command)
+                execute_method(*arguments, command)
             except (KeyboardInterrupt, EOFError, self.exceptions.GlobalException):
                 pass
             except Exception as e:

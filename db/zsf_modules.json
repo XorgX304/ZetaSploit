@@ -228,13 +228,13 @@
                 ],
                 "Risk": "high"
             },
-            "ssh/cve_2018_10933": {
-                "Path": "modules/exploit/multi/ssh/cve_2018_10933",
-                "Name": "exploit/multi/ssh/cve_2018_10933",
+            "ssh/libssh_code_execution": {
+                "Path": "modules/exploit/multi/ssh/libssh_code_execution",
+                "Name": "exploit/multi/ssh/libssh_code_execution",
                 "Authors": [
                     "enty8080"
                 ],
-                "Description": "SSH LibSSH unauthorized access.",
+                "Description": "SSH LibSSH unauthorized access code execution.",
                 "Dependencies": [
                     "paramiko"
                 ],

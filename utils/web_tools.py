@@ -43,7 +43,11 @@ class web_tools:
             if not path.startswith('/') and not url.endswith('/'):
                 path = '/' + path
             url += path
-        return requests.head(url, verify=False).headers
+        try:
+            response = requests.head(url, verify=False).headers
+        except Exception:
+            return None
+        return response
     
     def send_get_to_url(self, url, path=None):
         url = self.normalize_url(url)
@@ -51,7 +55,11 @@ class web_tools:
             if not path.startswith('/') and not url.endswith('/'):
                 path = '/' + path
             url += path
-        return requests.get(url, verify=False)
+        try:
+            response = requests.get(url, verify=False)
+        except Exception:
+            return None
+        return response
     
     def send_post_to_url(self, url, path=None, data):
         url = self.normalize_url(url)
@@ -59,7 +67,11 @@ class web_tools:
             if not path.startswith('/') and not url.endswith('/'):
                 path = '/' + path
             url += path
-        return requests.post(url, data, verify=False)
+        try:
+            response = requests.post(url, data, verify=False)
+        except Exception:
+            return None
+        return response
     
     #
     # Functions to send something to host and port
@@ -114,6 +126,7 @@ class web_tools:
     
     def get_url_server(self, url):
         header = self.send_head_to_url(url)
-        if 'Server' in header.keys():
-            return header['Server']
+        if header:
+            if 'Server' in header.keys():
+                return header['Server']
         return None

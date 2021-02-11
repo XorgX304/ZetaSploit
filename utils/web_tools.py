@@ -70,17 +70,16 @@ class web_tools:
         url = self.strip_scheme(url)
         return url.split(':')[0]
     
-    def strip_scheme(self, url):
+    def strip_scheme(self, url, strip_path=True):
         url = url.replace('http://', '', 1)
         url = url.replace('https://', '', 1)
-        return url.split('/')[0]
+        if strip_path:
+            url = url.split('/')[0]
+        return url
     
     def normalize_url(self, url):
-        if url.startswith('https://'):
-            url = self.strip_scheme(url)
-            url = 'http://' + url
-        elif not url.startswith('http://'):
-            url = 'http://' + url
+        url = self.strip_scheme(url, strip_path=False)
+        url = 'http://' + url
         return url
 
     #

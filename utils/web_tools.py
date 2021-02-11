@@ -26,7 +26,6 @@
 
 import socket
 import requests
-import url_normalize
 
 class web_tools:
     
@@ -77,7 +76,12 @@ class web_tools:
         return url.split('/')[0]
     
     def normalize_url(self, url):
-        return url_normalize.url_normalize(url)
+        if str.startwith(url, 'https://'):
+            url = self.strip_scheme(url)
+            url = 'http://' + url
+        elif not str.startswith(url, 'http://'):
+            url = 'http://' + url
+        return url
 
     #
     # Functions to get something from URL

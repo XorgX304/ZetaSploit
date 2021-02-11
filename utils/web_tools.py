@@ -29,6 +29,11 @@ import requests
 import url_normalize
 
 class web_tools:
+    
+    #
+    # Functions to send something to URL
+    #
+    
     def send_head_to_url(self, url):
         url = self.normalize_url(url)
         return requests.head(url, verify=False).headers
@@ -42,6 +47,10 @@ class web_tools:
         output = self.send_port_to_host(remote_host, remote_port, data, buffer_size)
         return output
     
+    #
+    # Functions to send something to host
+    #
+    
     def send_post_to_host(self, remote_host, remote_port, data, buffer_size=1024):
         sock = socket.socket()
         sock.connect((remote_host, int(remote_port)))
@@ -49,6 +58,10 @@ class web_tools:
         output = sock.recv(buffer_size)
         sock.close()
         return output.decode().strip()
+    
+    #
+    # Functions to parse URL
+    #
     
     def get_url_port(self, url):
         url = self.strip_scheme(url)
@@ -65,3 +78,13 @@ class web_tools:
     
     def normalize_url(self, url):
         return url_normalize.url_normalize(url)
+
+    #
+    # Functions to get something from URL
+    #
+    
+    def get_url_server(self, url):
+        header = self.send_head_to_url(url)
+        if 'Server' in header.keys():
+            return header['Server']
+        return None

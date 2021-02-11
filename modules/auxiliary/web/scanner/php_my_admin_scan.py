@@ -42,8 +42,9 @@ class ZetaSploitModule:
         self.helper = helper()
         
         self.web_tools = web_tools()
-        
         self.dictionary = dictionary()
+        
+        self.paths = self.dictionary.paths
 
         self.details = {
             'Name': "auxiliary/web/scanner/php_my_admin_scan",
@@ -71,16 +72,15 @@ class ZetaSploitModule:
     def run(self):
         target_url = self.parser.parse_options(self.options)
         
-        paths = self.dictionary.paths
-        for path in paths:
+        if not self.web_tools.check_url_access(target_url):
+            self.badges.output_error("Failed to scan, check URL and retry!")
+            return
+        
+        for path in self.paths:
             path = path.replace("\n", "")
             response = self.web_tools.send_get_to_url(target_url, path)
             
-            if response:
-                if response.status_code == 200:
-                    self.badges.output_success("[%s] ... [%s %s]" % (path, response.status_code, response.reason))
-                else:
-                    self.badges.output_warning("[%s] ... [%s %s]" % (path, response.status_code, response.reason))
+            if response.status_code == 200:
+                self.badges.output_success("[%s] ... [%s %s]" % (path, response.status_code, response.reason))
             else:
-                self.badges.output_error("Failed to scan, check URL and retry!")
-                return
+                self.badges.output_warning("[%s] ... [%s %s]" % (path, response.status_code, response.reason))

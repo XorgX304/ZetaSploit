@@ -74,6 +74,10 @@ class web_tools:
     # Functions to parse URL
     #
     
+    def craft_url(self, remote_host, remote_port):
+        url = remote_host + ':' + remote_port
+        return self.normalize_url(url)
+    
     def get_url_port(self, url):
         url = self.strip_scheme(url)
         return url.split(':')[1]

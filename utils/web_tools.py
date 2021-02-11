@@ -76,10 +76,10 @@ class web_tools:
         return url.split('/')[0]
     
     def normalize_url(self, url):
-        if str.startwith(url, 'https://'):
+        if url.startswith('https://'):
             url = self.strip_scheme(url)
             url = 'http://' + url
-        elif not str.startswith(url, 'http://'):
+        elif not url.startswith('http://'):
             url = 'http://' + url
         return url
 

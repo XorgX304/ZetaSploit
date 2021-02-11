@@ -27,8 +27,6 @@
 import os
 import sys
 
-import http.client
-
 from core.badges import badges
 from core.parser import parser
 from core.helper import helper
@@ -72,18 +70,15 @@ class ZetaSploitModule:
 
     def run(self):
         target_url = self.parser.parse_options(self.options)
-        target_url = self.web_tools.strip_scheme(target_url)
         
         paths = self.dictionary.paths
         try:
             for path in paths:
                 path = path.replace("\n", "")
-                connection = http.client.HTTPConnection(target_url)
-                connection.request("GET", path)
-                response = connection.getresponse()
-                if response.status == 200:
-                    self.badges.output_success("[%s] ... [%s %s]" % (path, response.status, response.reason))
+                response = self.web_tools.send_get_to_url(target_url, path)
+                if response.status_code == 200:
+                    self.badges.output_success("[%s] ... [%s %s]" % (path, response.status_code, response.reason))
                 else:
-                    self.badges.output_warning("[%s] ... [%s %s]" % (path, response.status, response.reason))
+                    self.badges.output_warning("[%s] ... [%s %s]" % (path, response.status_code, response.reason))
         except Exception:
             self.badges.output_error("Failed to scan, check URL and retry!")

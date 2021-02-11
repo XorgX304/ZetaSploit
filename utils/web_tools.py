@@ -53,10 +53,13 @@ class web_tools:
             url += path
         return requests.get(url, verify=False)
     
-    def send_post_to_url(self, url, data, buffer_size=1024):
-        remote_host, remote_port = self.get_host(url), self.get_port(url)
-        output = self.send_port_to_host(remote_host, remote_port, data, buffer_size)
-        return output
+    def send_post_to_url(self, url, path=None, data):
+        url = self.normalize_url(url)
+        if path:
+            if not path.startswith('/') and not url.endswith('/'):
+                path = '/' + path
+            url += path
+        return requests.post(url, data, verify=False)
     
     #
     # Functions to send something to host

@@ -71,7 +71,7 @@ class web_tools:
             return None
         return response
     
-    def send_post_to_url(self, url, path=None, data):
+    def send_post_to_url(self, url, data, path=None):
         url = self.normalize_url(url)
         if path:
             if not path.startswith('/') and not url.endswith('/'):

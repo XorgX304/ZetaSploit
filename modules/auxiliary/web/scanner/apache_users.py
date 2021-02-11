@@ -71,7 +71,7 @@ class ZetaSploitModule:
 
     def run(self):
         target_url = self.parser.parse_options(self.options)
-        
+
         if not self.web_tools.check_url_access(target_url):
             self.badges.output_error("Failed to scan, check URL and retry!")
             return

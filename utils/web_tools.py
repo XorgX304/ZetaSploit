@@ -24,28 +24,44 @@
 # SOFTWARE.
 #
 
+import socket
 import requests
 import url_normalize
 
 class web_tools:
-    def head_url(self, url):
+    def send_head_to_url(self, url):
         url = self.normalize_url(url)
         return requests.head(url, verify=False).headers
     
-    def get_url(self, url):
+    def send_get_to_url(self, url):
         url = self.normalize_url(url)
         return requests.get(url, verify=False)
     
-    def post_url(self, url, data, headers=None):
-        url = self.normalize_url(url)
-        if headers:
-            return requests.post(url, data=data, headers=headers, verify=False)
-        return requests.post(url, data=data, verify=False)
+    def send_post_to_url(self, url, data, buffer_size=1024):
+        remote_host, remote_port = self.get_host(url), self.get_port(url)
+        output = self.send_port_to_host(remote_host, remote_port, data, buffer_size)
+        return output
+    
+    def send_post_to_host(self, remote_host, remote_port, data, buffer_size=1024):
+        sock = socket.socket()
+        sock.connect((remote_host, int(remote_port)))
+        sock.send(data.encode())
+        output = sock.recv(buffer_size)
+        sock.close()
+        return output.decode().strip()
+    
+    def get_url_port(self, url):
+        url = self.strip_scheme(url)
+        return url.split(':')[1]
+        
+    def get_url_host(self, url):
+        url = self.strip_scheme(url)
+        return url.split(':')[0]
     
     def strip_scheme(self, url):
         url = url.replace('http://', '', 1)
         url = url.replace('https://', '', 1)
-        return url.replace('/', '')
+        return url.split('/')[0]
     
     def normalize_url(self, url):
         return url_normalize.url_normalize(url)

@@ -36,12 +36,16 @@ class web_tools:
     def send_head_to_url(self, url, path=None):
         url = self.normalize_url(url)
         if path:
+            if not path.startswith('/') and not url.endswith('/'):
+                path = '/' + path
             url += path
         return requests.head(url, verify=False).headers
     
     def send_get_to_url(self, url, path=None):
         url = self.normalize_url(url)
         if path:
+            if not path.startswith('/') and not url.endswith('/'):
+                path = '/' + path
             url += path
         return requests.get(url, verify=False)
     

@@ -62,7 +62,7 @@ class web_tools:
         return requests.post(url, data, verify=False)
     
     #
-    # Functions to send something to host
+    # Functions to send something to host and port
     #
     
     def send_post_to_host(self, remote_host, remote_port, data, buffer_size=1024):
@@ -72,6 +72,13 @@ class web_tools:
         output = sock.recv(buffer_size)
         sock.close()
         return output.decode().strip()
+    
+    #
+    # Functions to parse host and port
+    #
+    
+    def format_host_and_port(self, remote_host, remote_port):
+        return remote_host + ':' + remote_port
     
     #
     # Functions to parse URL

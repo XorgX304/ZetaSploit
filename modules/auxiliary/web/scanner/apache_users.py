@@ -72,13 +72,15 @@ class ZetaSploitModule:
         target_url = self.parser.parse_options(self.options)
         
         paths = self.dictionary.paths
-        try:
-            for path in paths:
-                path = path.replace("\n", "")
-                response = self.web_tools.send_get_to_url(target_url, path)
+        for path in paths:
+            path = path.replace("\n", "")
+            response = self.web_tools.send_get_to_url(target_url, path)
+            
+            if response:
                 if response.status_code == 200:
                     self.badges.output_success("[%s] ... [%s %s]" % (path, response.status_code, response.reason))
                 else:
                     self.badges.output_warning("[%s] ... [%s %s]" % (path, response.status_code, response.reason))
-        except Exception:
-            self.badges.output_error("Failed to scan, check URL and retry!")
+            else:
+                self.badges.output_error("Failed to scan, check URL and retry!")
+                return

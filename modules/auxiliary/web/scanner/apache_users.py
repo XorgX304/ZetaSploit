@@ -33,6 +33,8 @@ from core.badges import badges
 from core.parser import parser
 from core.helper import helper
 
+from utils.web_tools import web_tools
+
 from data.modules.auxiliary.web.scanner.apache_users.dictionary import dictionary
 
 class ZetaSploitModule:
@@ -40,6 +42,8 @@ class ZetaSploitModule:
         self.badges = badges()
         self.parser = parser()
         self.helper = helper()
+        
+        self.web_tools = web_tools()
         
         self.dictionary = dictionary()
 
@@ -68,7 +72,7 @@ class ZetaSploitModule:
 
     def run(self):
         target_url = self.parser.parse_options(self.options)
-        target_url = self.helper.strip_scheme(target_url)
+        target_url = self.web_tools.strip_scheme(target_url)
         
         paths = self.dictionary.paths
         try:

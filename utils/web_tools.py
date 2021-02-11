@@ -34,6 +34,16 @@ class web_tools:
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
     
     #
+    # Functions to check URL stability
+    #
+    
+    def check_url_access(self, url, path=None):
+        response = self.send_head_to_url(url, path)
+        if response:
+            return True
+        return False
+    
+    #
     # Functions to send something to URL
     #
     

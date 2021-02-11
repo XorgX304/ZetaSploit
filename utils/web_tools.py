@@ -33,12 +33,16 @@ class web_tools:
     # Functions to send something to URL
     #
     
-    def send_head_to_url(self, url):
+    def send_head_to_url(self, url, path=None):
         url = self.normalize_url(url)
+        if path:
+            url += path
         return requests.head(url, verify=False).headers
     
-    def send_get_to_url(self, url):
+    def send_get_to_url(self, url, path=None):
         url = self.normalize_url(url)
+        if path:
+            url += path
         return requests.get(url, verify=False)
     
     def send_post_to_url(self, url, data, buffer_size=1024):
@@ -78,7 +82,7 @@ class web_tools:
         return url
     
     def normalize_url(self, url):
-        url = self.strip_scheme(url, strip_path=False)
+        url = self.strip_scheme(url, False)
         url = 'http://' + url
         return url
 

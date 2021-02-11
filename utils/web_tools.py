@@ -27,7 +27,11 @@
 import socket
 import requests
 
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+
 class web_tools:
+    def __init__(self):
+        requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
     
     #
     # Functions to send something to URL

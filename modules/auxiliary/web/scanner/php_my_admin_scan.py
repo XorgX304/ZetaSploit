@@ -27,11 +27,11 @@
 import os
 import sys
 
-import http.client
-
 from core.badges import badges
 from core.parser import parser
 from core.helper import helper
+
+from utils.web_tools import web_tools
 
 from data.modules.auxiliary.web.scanner.php_my_admin_scan.dictionary import dictionary
 
@@ -41,7 +41,10 @@ class ZetaSploitModule:
         self.parser = parser()
         self.helper = helper()
         
+        self.web_tools = web_tools()
         self.dictionary = dictionary()
+        
+        self.paths = self.dictionary.paths
 
         self.details = {
             'Name': "auxiliary/web/scanner/php_my_admin_scan",
@@ -68,20 +71,16 @@ class ZetaSploitModule:
 
     def run(self):
         target_url = self.parser.parse_options(self.options)
-        target_url = self.helper.remove_scheme(target_url)
         
-        paths = self.dictionary.paths
-        try:
-            for path in paths:
-                path = path.replace("\n", "")
-                connection = http.client.HTTPConnection(target_url)
-                connection.request("GET", path)
-                response = connection.getresponse()
-                if response.status == 200:
-                    self.badges.output_success("[%s] ... [%s %s]" % (path, response.status, response.reason))
-                else:
-                    self.badges.output_warning("[%s] ... [%s %s]" % (path, response.status, response.reason))
-        except (KeyboardInterrupt, EOFError):
-            self.badges.output_empty("")
-        except Exception:
-            self.badges.output_error("Host is down!")
+        if not self.web_tools.check_url_access(target_url):
+            self.badges.output_error("Failed to scan, check URL and retry!")
+            return
+        
+        for path in self.paths:
+            path = path.replace("\n", "")
+            response = self.web_tools.send_get_to_url(target_url, path)
+            
+            if response.status_code == 200:
+                self.badges.output_success("[%s] ... [%s %s]" % (path, response.status_code, response.reason))
+            else:
+                self.badges.output_warning("[%s] ... [%s %s]" % (path, response.status_code, response.reason))

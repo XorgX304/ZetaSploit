@@ -26,11 +26,13 @@
 
 from core.badges import badges
 from core.jobs import jobs
+from core.exceptions import exceptions
 
 class pseudo_shell:
     def __init__(self):
         self.badges = badges()
         self.jobs = jobs()
+        self.exceptions = exceptions()
         
         self.prompt = 'pseudo % '
         
@@ -41,7 +43,7 @@ class pseudo_shell:
         self.badges.output_information("Commands are sent to the target via provided execute method.")
         self.badges.output_empty("")
         
-    def spawn_pseudo_shell(self, module_name, execute_method):
+    def spawn_pseudo_shell(self, module_name, execute_method, arguments=()):
         self.badges.output_process("Spawning Pseudo shell...")
         
         if self.jobs.check_module_job(module_name):
@@ -51,17 +53,16 @@ class pseudo_shell:
             self.badges.output_success("Congratulations, you won Pseudo shell!")
         
             self.pseudo_shell_header()
-            self.launch_pseudo_shell(execute_method)
+            self.launch_pseudo_shell(execute_method, arguments)
         
-    def launch_pseudo_shell(self, execute_method):
+    def launch_pseudo_shell(self, execute_method, arguments):
         while True:
             try:
                 command = self.badges.input_empty(self.prompt)
                 if command == 'exit':
                     break
-                execute_method(command)
-            except (EOFError, KeyboardInterrupt):
-                self.badges.output_empty("")
-                break
+                execute_method(*arguments, command)
+            except (KeyboardInterrupt, EOFError, self.exceptions.GlobalException):
+                pass
             except Exception as e:
                 self.badges.output_error("An error occurred: " + str(e) + "!")

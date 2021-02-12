@@ -138,39 +138,39 @@
             }
         },
         "multi": {
-            "citrix_adc_netscaler/cve_2019_19781": {
-                "Path": "modules/exploit/multi/citrix_adc_netscaler/cve_2019_19781",
-                "Name": "exploit/multi/citrix_adc_netscaler/cve_2019_19781",
+            "f5_big_ip_tmui/local_file_inclusion": {
+                "Path": "modules/exploit/multi/f5_big_ip_tmui/local_file_inclusion",
+                "Name": "exploit/multi/f5_big_ip_tmui/local_file_inclusion",
                 "Authors": [
                     "enty8080"
                 ],
-                "Description": "Remote Code Execution in Citrix Application Delivery Controller and Citrix Gateway.",
+                "Description": "Local File Inclusion in F5 BIG-IP Traffic Management User Interface (TMUI).",
                 "Dependencies": [
-                    "requests"
+                    ""
                 ],
                 "Comments": [
                     ""
                 ],
                 "Risk": "high"
             },
-            "f5_big_ip_tmui/cve_2020_5902": {
-                "Path": "modules/exploit/multi/f5_big_ip_tmui/cve_2020_5902",
-                "Name": "exploit/multi/f5_big_ip_tmui/cve_2020_5902",
+            "f5_big_ip_tmui/remote_code_execution": {
+                "Path": "modules/exploit/multi/f5_big_ip_tmui/remote_code_execution",
+                "Name": "exploit/multi/f5_big_ip_tmui/remote_code_execution",
                 "Authors": [
                     "enty8080"
                 ],
                 "Description": "Remote Code Execution in F5 BIG-IP Traffic Management User Interface (TMUI).",
                 "Dependencies": [
-                    "requests"
+                    ""
                 ],
                 "Comments": [
                     ""
                 ],
                 "Risk": "high"
             },
-            "nostromo_httpd/cve_2019_16278": {
-                "Path": "modules/exploit/multi/nostromo_httpd/cve_2019_16278",
-                "Name": "exploit/multi/nostromo_httpd/cve_2019_16278",
+            "nostromo_httpd/remote_code_execution": {
+                "Path": "modules/exploit/multi/nostromo_httpd/remote_code_execution",
+                "Name": "exploit/multi/nostromo_httpd/remote_code_execution",
                 "Authors": [
                     "enty8080"
                 ],
@@ -183,43 +183,43 @@
                 ],
                 "Risk": "high"
             },
-            "vbulletin_widget_php/cve_2019_16759": {
-                "Path": "modules/exploit/multi/vbulletin_widget_php/cve_2019_16759",
-                "Name": "exploit/multi/vbulletin_widget_php/cve_2019_16759",
+            "vbulletin_widget_php/config_code_execution": {
+                "Path": "modules/exploit/multi/vbulletin_widget_php/config_code_execution",
+                "Name": "exploit/multi/vbulletin_widget_php/config_code_execution",
                 "Authors": [
                     "enty8080"
                 ],
-                "Description": "vBulletin 5.0.0 till 5.5.4 widget_php Unauthenticated Remote Code Execution.",
+                "Description": "vBulletin 5.0.0 till 5.5.4 widget_php widgetConfig Remote Code Execution.",
                 "Dependencies": [
-                    "requests"
+                    ""
                 ],
                 "Comments": [
                     ""
                 ],
                 "Risk": "high"
             },
-            "vbulletin_widget_php/cve_2020_7373": {
-                "Path": "modules/exploit/multi/vbulletin_widget_php/cve_2020_7373",
-                "Name": "exploit/multi/vbulletin_widget_php/cve_2020_7373",
+            "vbulletin_widget_php/template_code_execution": {
+                "Path": "modules/exploit/multi/vbulletin_widget_php/template_code_execution",
+                "Name": "exploit/multi/vbulletin_widget_php/template_code_execution",
                 "Authors": [
                     "enty8080"
                 ],
-                "Description": "vBulletin 5.5.4 till 5.6.2 widget_php Unauthenticated Remote Code Execution.",
+                "Description": "vBulletin 5.5.4 till 5.6.2 widget_php widget_tabbedcontainer_tab_panel Remote Code Execution.",
                 "Dependencies": [
-                    "requests"
+                    ""
                 ],
                 "Comments": [
                     ""
                 ],
                 "Risk": "high"
             },
-            "ssh/cve_2018_10933": {
-                "Path": "modules/exploit/multi/ssh/cve_2018_10933",
-                "Name": "exploit/multi/ssh/cve_2018_10933",
+            "ssh/libssh_code_execution": {
+                "Path": "modules/exploit/multi/ssh/libssh_code_execution",
+                "Name": "exploit/multi/ssh/libssh_code_execution",
                 "Authors": [
                     "enty8080"
                 ],
-                "Description": "SSH LibSSH unauthorized access.",
+                "Description": "SSH LibSSH unauthorized access Remote Code Execution.",
                 "Dependencies": [
                     "paramiko"
                 ],

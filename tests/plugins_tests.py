@@ -47,8 +47,7 @@ class plugins_tests:
                     try:
                         _ = self.importer.import_plugin(plugins[plugin]['Path'])
                         self.badges.output_success(plugin + ': OK')
-                    except Exception as e:
+                    except Exception:
                         self.badges.output_error(plugin + ': FAIL')
-                        self.badges.output_information('Reason: ' + str(e))
                         fail = True
         return fail

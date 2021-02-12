@@ -76,7 +76,8 @@ class importer:
             command_object = __import__(command_directory)
             command_object = self.get_module(command_object, command_file, command_directory)
             command_object = command_object.ZetaSploitCommand()
-        except Exception:
+        except Exception as e:
+            self.badges.output_information('Reason: ' + str(e))
             raise self.exceptions.GlobalException
         return command_object
         
@@ -88,7 +89,8 @@ class importer:
             module_object = __import__(module_directory)
             module_object = self.get_module(module_object, module_file, module_directory)
             module_object = module_object.ZetaSploitModule()
-        except Exception:
+        except Exception as e:
+            self.badges.output_information('Reason: ' + str(e))
             raise self.exceptions.GlobalException
         return module_object
     
@@ -100,7 +102,8 @@ class importer:
             plugin_object = __import__(plugin_directory)
             plugin_object = self.get_module(plugin_object, plugin_file, plugin_directory)
             plugin_object = plugin_object.ZetaSploitPlugin()
-        except Exception:
+        except Exception as e:
+            self.badges.output_information('Reason: ' + str(e))
             raise self.exceptions.GlobalException
         return plugin_object
         

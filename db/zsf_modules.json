@@ -138,21 +138,6 @@
             }
         },
         "multi": {
-            "citrix_adc_netscaler/remote_code_execution": {
-                "Path": "modules/exploit/multi/citrix_adc_netscaler/remote_code_execution",
-                "Name": "exploit/multi/citrix_adc_netscaler/remote_code_execution",
-                "Authors": [
-                    "enty8080"
-                ],
-                "Description": "Remote Code Execution in Citrix Application Delivery Controller and Citrix Gateway.",
-                "Dependencies": [
-                    ""
-                ],
-                "Comments": [
-                    ""
-                ],
-                "Risk": "high"
-            },
             "f5_big_ip_tmui/local_file_inclusion": {
                 "Path": "modules/exploit/multi/f5_big_ip_tmui/local_file_inclusion",
                 "Name": "exploit/multi/f5_big_ip_tmui/local_file_inclusion",

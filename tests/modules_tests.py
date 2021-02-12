@@ -51,8 +51,7 @@ class modules_tests:
                             try:
                                 _ = self.importer.import_module(modules[category][platform][module]['Path'])
                                 self.badges.output_success(self.modules.get_full_name(category, platform, module) + ': OK')
-                            except Exception as e:
+                            except Exception:
                                 self.badges.output_error(self.modules.get_full_name(category, platform, module) + ': FAIL')
-                                self.badges.output_information('Reason: ' + str(e))
                                 fail = True
         return fail

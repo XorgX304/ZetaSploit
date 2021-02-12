@@ -198,9 +198,9 @@
                 ],
                 "Risk": "high"
             },
-            "vbulletin_widget_php/config_remote_code_execution": {
-                "Path": "modules/exploit/multi/vbulletin_widget_php/config_remote_code_execution",
-                "Name": "exploit/multi/vbulletin_widget_php/config_remote_code_execution",
+            "vbulletin_widget_php/config_code_execution": {
+                "Path": "modules/exploit/multi/vbulletin_widget_php/config_code_execution",
+                "Name": "exploit/multi/vbulletin_widget_php/config_code_execution",
                 "Authors": [
                     "enty8080"
                 ],
@@ -213,9 +213,9 @@
                 ],
                 "Risk": "high"
             },
-            "vbulletin_widget_php/template_remote_code_execution": {
-                "Path": "modules/exploit/multi/vbulletin_widget_php/template_remote_code_execution",
-                "Name": "exploit/multi/vbulletin_widget_php/template_remote_code_execution",
+            "vbulletin_widget_php/template_code_execution": {
+                "Path": "modules/exploit/multi/vbulletin_widget_php/template_code_execution",
+                "Name": "exploit/multi/vbulletin_widget_php/template_code_execution",
                 "Authors": [
                     "enty8080"
                 ],
@@ -234,7 +234,7 @@
                 "Authors": [
                     "enty8080"
                 ],
-                "Description": "SSH LibSSH unauthorized access code execution.",
+                "Description": "SSH LibSSH unauthorized access Remote Code Execution.",
                 "Dependencies": [
                     "paramiko"
                 ],

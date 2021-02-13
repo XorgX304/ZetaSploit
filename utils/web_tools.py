@@ -48,7 +48,7 @@ class web_tools:
     #
     
     def send_head_to_url(self, url, path=None):
-        url = self.normalize_url(url)
+        url = self.normalize_url(url, False)
         if path:
             if not path.startswith('/') and not url.endswith('/'):
                 path = '/' + path
@@ -125,10 +125,23 @@ class web_tools:
             url = url.split('/')[0]
         return url
     
-    def normalize_url(self, url):
+    def url_is_https(self, url):
+        response = self.send_head_to_url(url)
+        
+        if response:
+            if response.status_code == 400:
+                return True
+        return False
+    
+    def normalize_url(self, url, verify=True):
         url = self.strip_scheme(url, False)
         url = 'http://' + url
-        return url
+        
+        if verify:
+            if self.url_is_https(url):
+                url = self.strip_scheme(url, False)
+                url = 'https://' + url
+            return url
 
     #
     # Functions to get something from URL
